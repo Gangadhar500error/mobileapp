@@ -65,93 +65,81 @@ class _WelcomePageState extends State<WelcomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.green.shade400,
-              Colors.green.shade600,
-              Colors.green.shade800,
-            ],
-          ),
-        ),
-        child: SafeArea(
-          child: Center(
-            child: FadeTransition(
-              opacity: _fadeAnimation,
-              child: ScaleTransition(
-                scale: _scaleAnimation,
-                child: SlideTransition(
-                  position: _slideAnimation,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // App Logo/Icon with animation
-                      Container(
-                        width: 140,
-                        height: 140,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.3),
-                              blurRadius: 30,
-                              offset: const Offset(0, 15),
-                            ),
-                          ],
-                        ),
-                        child: const Icon(
-                          Icons.shopping_cart,
-                          size: 70,
-                          color: Colors.green,
-                        ),
-                      ),
-                      
-                      const SizedBox(height: 40),
-                      
-                      // App Name
-                      const Text(
-                        'Food & Grocery',
-                        style: TextStyle(
-                          fontSize: 36,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          letterSpacing: 1.5,
-                        ),
-                      ),
-                      
-                      const SizedBox(height: 16),
-                      
-                      // Tagline
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40),
-                        child: Text(
-                          'Fresh groceries and delicious food\ndelivered to your doorstep',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white.withValues(alpha: 0.95),
-                            height: 1.6,
+      backgroundColor: const Color(0xFFF8F9FC),
+      body: SafeArea(
+        child: Center(
+          child: FadeTransition(
+            opacity: _fadeAnimation,
+            child: ScaleTransition(
+              scale: _scaleAnimation,
+              child: SlideTransition(
+                position: _slideAnimation,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // App Logo/Icon with animation
+                    Container(
+                      width: 140,
+                      height: 140,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0xFF0A3D91).withValues(alpha: 0.15),
+                            blurRadius: 30,
+                            offset: const Offset(0, 15),
                           ),
+                        ],
+                      ),
+                      child: const Icon(
+                        Icons.shopping_cart,
+                        size: 70,
+                        color: Color(0xFF0A3D91),
+                      ),
+                    ),
+                    
+                    const SizedBox(height: 40),
+                    
+                    // App Name
+                    const Text(
+                      'MANNA',
+                      style: TextStyle(
+                        fontSize: 36,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF2B2B2B),
+                        letterSpacing: 2,
+                      ),
+                    ),
+                    
+                    const SizedBox(height: 16),
+                    
+                    // Tagline
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: Text(
+                        'Fresh groceries and delicious food\ndelivered to your doorstep',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: const Color(0xFF2B2B2B).withValues(alpha: 0.7),
+                          height: 1.6,
                         ),
                       ),
-                      
-                      const SizedBox(height: 60),
-                      
-                      // Loading indicator
-                      const SizedBox(
-                        width: 40,
-                        height: 40,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                          strokeWidth: 3,
-                        ),
+                    ),
+                    
+                    const SizedBox(height: 60),
+                    
+                    // Loading indicator
+                    const SizedBox(
+                      width: 40,
+                      height: 40,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF0A3D91)),
+                        strokeWidth: 3,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),

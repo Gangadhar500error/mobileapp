@@ -9,7 +9,7 @@ class CategoriesPage extends StatelessWidget {
       {
         'name': 'Veg',
         'icon': Icons.eco,
-        'color': Colors.green,
+        'color': const Color(0xFF0A3D91),
         'count': '120+',
       },
       {
@@ -81,7 +81,7 @@ class CategoriesPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
+      backgroundColor: const Color(0xFFF8F9FC),
       appBar: AppBar(
         title: const Text(
           'Categories',
@@ -138,7 +138,7 @@ class CategoriesPage extends StatelessWidget {
           SnackBar(
             content: Text('Showing $name items'),
             duration: const Duration(seconds: 1),
-            backgroundColor: Colors.green.shade700,
+            backgroundColor: const Color(0xFF0A3D91),
           ),
         );
       },

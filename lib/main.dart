@@ -15,15 +15,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.green,
+          seedColor: const Color(0xFF0A3D91),
           brightness: Brightness.light,
         ),
         useMaterial3: true,
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.green.shade700,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF0A3D91),
           foregroundColor: Colors.white,
           elevation: 0,
         ),
+        scaffoldBackgroundColor: const Color(0xFFF8F9FC),
       ),
       home: const WelcomeOnboardingPage(),
     );

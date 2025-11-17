@@ -93,10 +93,10 @@ class _LocationPickerContent extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(18),
                 decoration: BoxDecoration(
-                  color: Colors.green.shade50,
+                  color: const Color(0xFF0A3D91).withValues(alpha: 0.05),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: Colors.green.shade200,
+                    color: const Color(0xFF0A3D91).withValues(alpha: 0.2),
                     width: 1.5,
                   ),
                 ),
@@ -105,12 +105,12 @@ class _LocationPickerContent extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: Colors.green.shade100,
+                        color: const Color(0xFF0A3D91).withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Icon(
                         Icons.location_on_rounded,
-                        color: Colors.green.shade700,
+                        color: const Color(0xFF0A3D91),
                         size: 28,
                       ),
                     ),
@@ -125,7 +125,7 @@ class _LocationPickerContent extends StatelessWidget {
                               fontSize: 17,
                               fontWeight: FontWeight.w600,
                               letterSpacing: -0.3,
-                              color: Colors.green.shade800,
+                              color: const Color(0xFF0A3D91),
                             ),
                           ),
                           const SizedBox(height: 4),
@@ -144,7 +144,7 @@ class _LocationPickerContent extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(6),
                       decoration: BoxDecoration(
-                        color: Colors.green.shade700,
+                        color: const Color(0xFF0A3D91),
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(
@@ -182,7 +182,7 @@ class _LocationPickerContent extends StatelessWidget {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green.shade700,
+                    backgroundColor: const Color(0xFF0A3D91),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),

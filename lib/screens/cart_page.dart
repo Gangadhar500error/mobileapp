@@ -26,11 +26,42 @@ class _CartPageState extends State<CartPage> {
   String _paymentMethod = 'COD';
   String _deliveryAddress = '123 Main Street, Mumbai';
 
+  List<Map<String, dynamic>> get _dummyMenuItems => [
+    {
+      'id': 'dummy1',
+      'name': 'Margherita Pizza',
+      'price': 250,
+      'imageUrl': 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop',
+    },
+    {
+      'id': 'dummy2',
+      'name': 'Chicken Biryani',
+      'price': 180,
+      'imageUrl': 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&h=300&fit=crop',
+    },
+    {
+      'id': 'dummy3',
+      'name': 'Chocolate Brownie',
+      'price': 120,
+      'imageUrl': 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=300&fit=crop',
+    },
+  ];
+
+  Map<String, int> get _dummyCartItems => {
+    'dummy1': 2,
+    'dummy2': 1,
+    'dummy3': 1,
+  };
+
   @override
   void initState() {
     super.initState();
     _cartItems = widget.cartItems ?? {};
     _menuItems = widget.menuItems ?? [];
+    if (_cartItems.isEmpty && _menuItems.isEmpty) {
+      _cartItems = _dummyCartItems;
+      _menuItems = _dummyMenuItems;
+    }
     _calculateCashback();
   }
 
@@ -135,7 +166,7 @@ class _CartPageState extends State<CartPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cart'),
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: const Color(0xFF0A3D91),
         foregroundColor: Colors.white,
       ),
       body: _cartItems.isEmpty
@@ -289,7 +320,7 @@ class _CartPageState extends State<CartPage> {
                                 Text(
                                   '₹$price',
                                   style: TextStyle(
-                                    color: Colors.green.shade700,
+                                    color: const Color(0xFF0A3D91),
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -370,7 +401,7 @@ class _CartPageState extends State<CartPage> {
                               child: Text(
                                 '₹50 discount applied!',
                                 style: TextStyle(
-                                  color: Colors.green.shade700,
+                                  color: const Color(0xFF0A3D91),
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -495,7 +526,7 @@ class _CartPageState extends State<CartPage> {
                     child: ElevatedButton(
                       onPressed: _placeOrder,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green.shade700,
+                        backgroundColor: const Color(0xFF0A3D91),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -536,7 +567,7 @@ class _CartPageState extends State<CartPage> {
             style: TextStyle(
               fontSize: isTotal ? 20 : 16,
               fontWeight: FontWeight.bold,
-              color: isDiscount ? Colors.green.shade700 : Colors.black87,
+              color: isDiscount ? const Color(0xFF0A3D91) : Colors.black87,
             ),
           ),
         ],

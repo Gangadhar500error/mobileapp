@@ -3,11 +3,14 @@ import '../components/banner_slider.dart';
 import '../components/location_picker.dart';
 import '../components/app_footer.dart';
 import '../components/header.dart';
+import '../components/category_tabs.dart';
+import '../components/filter_tabs.dart';
 import 'restaurant_details_page.dart';
 import 'profile_page.dart';
 import 'best_offers_page.dart';
 import 'all_restaurants_page.dart';
 import 'grocery_page.dart';
+import 'milk_page.dart';
 import 'add_address_page.dart';
 import 'categories_page.dart';
 import 'cart_page.dart';
@@ -26,7 +29,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   late String _selectedCity;
   String _selectedFilter = 'All';
-  bool _isFoodActive = true; // Default: Food tab active
+  ActiveTab _activeTab = ActiveTab.food; // Default: Food tab active
   final List<String> _filters = ['All', 'Biriyani', 'Tiffin', 'Lunch', 'Dinner', 'Pizza', 'Fast Food', 'Chinese', 'Italian'];
   int _cartItemCount = 0;
   final int _wishlistCount = 5; // Static wishlist count
@@ -58,12 +61,12 @@ class _HomePageState extends State<HomePage> {
     },
     {
       'id': '3',
-      'name': 'Paradise Biriyani',
+      'name': 'Bawarchi Biriyani House',
       'cuisine': 'Biriyani',
       'type': 'food',
-      'rating': 4.6,
-      'deliveryTime': '28 min',
-      'deliveryFee': 40,
+      'rating': 4.7,
+      'deliveryTime': '25 min',
+      'deliveryFee': 35,
       'imageUrl': 'https://images.unsplash.com/photo-1633945274309-2c16f9692d30?w=400&h=300&fit=crop',
       'isOpen': true,
     },
@@ -430,45 +433,112 @@ class _HomePageState extends State<HomePage> {
   Widget _getCurrentPage() {
     switch (_selectedIndex) {
       case 0:
-        // Show grocery page if grocery is active, otherwise show food content
-        return _isFoodActive
-            ? _buildHomeContent()
-            : GroceryPage(
-                selectedCity: _selectedCity,
-                isFoodActive: _isFoodActive,
-                onFoodTap: () {
-                  setState(() {
-                    _isFoodActive = true;
-                    _selectedFilter = 'All';
-                  });
-                  _scrollController.animateTo(
-                    0,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeOut,
-                  );
-                },
-                onGroceryTap: () {
-                  setState(() {
-                    _isFoodActive = false;
-                    _selectedFilter = 'All';
-                  });
-                  _scrollController.animateTo(
-                    0,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeOut,
-                  );
-                },
-                onCitySelected: (city) {
-                  setState(() {
-                    _selectedCity = city;
-                  });
-                },
-                onWishlistTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Wishlist feature coming soon!')),
-                  );
-                },
+        // Show appropriate page based on active tab
+        if (_activeTab == ActiveTab.food) {
+          return _buildHomeContent();
+        } else if (_activeTab == ActiveTab.grocery) {
+          return GroceryPage(
+            selectedCity: _selectedCity,
+            activeTab: _activeTab,
+            onFoodTap: () {
+              setState(() {
+                _activeTab = ActiveTab.food;
+                _selectedFilter = 'All';
+              });
+              _scrollController.animateTo(
+                0,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeOut,
               );
+            },
+            onGroceryTap: () {
+              setState(() {
+                _activeTab = ActiveTab.grocery;
+                _selectedFilter = 'All';
+              });
+              _scrollController.animateTo(
+                0,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeOut,
+              );
+            },
+            onMilkTap: () {
+              setState(() {
+                _activeTab = ActiveTab.milk;
+                _selectedFilter = 'All';
+              });
+              _scrollController.animateTo(
+                0,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeOut,
+              );
+            },
+            onCitySelected: (city) {
+              setState(() {
+                _selectedCity = city;
+              });
+            },
+            onWishlistTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const WishlistPage(),
+                ),
+              );
+            },
+          );
+        } else {
+          return MilkPage(
+            selectedCity: _selectedCity,
+            activeTab: _activeTab,
+            onFoodTap: () {
+              setState(() {
+                _activeTab = ActiveTab.food;
+                _selectedFilter = 'All';
+              });
+              _scrollController.animateTo(
+                0,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeOut,
+              );
+            },
+            onGroceryTap: () {
+              setState(() {
+                _activeTab = ActiveTab.grocery;
+                _selectedFilter = 'All';
+              });
+              _scrollController.animateTo(
+                0,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeOut,
+              );
+            },
+            onMilkTap: () {
+              setState(() {
+                _activeTab = ActiveTab.milk;
+                _selectedFilter = 'All';
+              });
+              _scrollController.animateTo(
+                0,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeOut,
+              );
+            },
+            onCitySelected: (city) {
+              setState(() {
+                _selectedCity = city;
+              });
+            },
+            onWishlistTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const WishlistPage(),
+                ),
+              );
+            },
+          );
+        }
       case 1:
         return const CategoriesPage();
       case 2:
@@ -497,29 +567,6 @@ class _HomePageState extends State<HomePage> {
           flexibleSpace: CustomHeader(
             scaffoldKey: GlobalKey<ScaffoldState>(),
             location: _selectedCity,
-            isFoodActive: _isFoodActive,
-            onFoodTap: () {
-              setState(() {
-                _isFoodActive = true;
-                _selectedFilter = 'All';
-              });
-              _scrollController.animateTo(
-                0,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeOut,
-              );
-            },
-            onGroceryTap: () {
-              setState(() {
-                _isFoodActive = false;
-                _selectedFilter = 'All';
-              });
-              _scrollController.animateTo(
-                0,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeOut,
-              );
-            },
             onLocationTap: () {
               LocationPicker.show(
                 context: context,
@@ -560,6 +607,50 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
 
+        // Category Tabs (Food/Grocery/Milk) - Hide on scroll
+        SliverPersistentHeader(
+          pinned: false,
+          delegate: _StickyHeaderDelegate(
+            height: 60,
+            child: CategoryTabs(
+              activeTab: _activeTab,
+              onFoodTap: () {
+                setState(() {
+                  _activeTab = ActiveTab.food;
+                  _selectedFilter = 'All';
+                });
+                _scrollController.animateTo(
+                  0,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeOut,
+                );
+              },
+              onGroceryTap: () {
+                setState(() {
+                  _activeTab = ActiveTab.grocery;
+                  _selectedFilter = 'All';
+                });
+                _scrollController.animateTo(
+                  0,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeOut,
+                );
+              },
+              onMilkTap: () {
+                setState(() {
+                  _activeTab = ActiveTab.milk;
+                  _selectedFilter = 'All';
+                });
+                _scrollController.animateTo(
+                  0,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeOut,
+                );
+              },
+            ),
+          ),
+        ),
+
         // Search Bar
         SliverToBoxAdapter(
           child: Container(
@@ -583,88 +674,29 @@ class _HomePageState extends State<HomePage> {
         ),
 
         // Banner Slider
-        const SliverToBoxAdapter(
-          child: BannerSlider(),
+        SliverToBoxAdapter(
+          child: BannerSlider(category: _activeTab),
         ),
 
-        // Sticky Tabs
+        // Filter Tabs (All, Biriyani, Tiffin, etc.) - Sticky
         SliverPersistentHeader(
           pinned: true,
           delegate: _StickyHeaderDelegate(
-            child: Container(
-              color: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                itemCount: _filters.length,
-                itemBuilder: (context, index) {
-                  final filter = _filters[index];
-                  final isSelected = _selectedFilter == filter;
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedFilter = filter;
-                      });
-                      // Smooth scroll to top when filter changes
-                      _scrollController.animateTo(
-                        0,
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeOut,
-                      );
-                    },
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      margin: const EdgeInsets.only(right: 8),
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: isSelected ? Colors.green.shade700 : Colors.white,
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                          color: isSelected ? Colors.green.shade700 : Colors.grey.shade300,
-                          width: isSelected ? 2 : 1,
-                        ),
-                        boxShadow: isSelected
-                            ? [
-                                BoxShadow(
-                                  color: Colors.green.withValues(alpha: 0.3),
-                                  blurRadius: 8,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ]
-                            : null,
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            width: 24,
-                            height: 24,
-                            decoration: BoxDecoration(
-                              color: isSelected ? Colors.white.withValues(alpha: 0.2) : Colors.grey.shade100,
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            child: Icon(
-                              _getFilterIcon(filter),
-                              size: 16,
-                              color: isSelected ? Colors.white : Colors.grey.shade700,
-                            ),
-                          ),
-                          const SizedBox(width: 6),
-                          Text(
-                            filter,
-                            style: TextStyle(
-                              color: isSelected ? Colors.white : Colors.grey.shade700,
-                              fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                              fontSize: 13,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
+            height: 60,
+            child: FilterTabs(
+              filters: _filters,
+              selectedFilter: _selectedFilter,
+              onFilterTap: (filter) {
+                setState(() {
+                  _selectedFilter = filter;
+                });
+                _scrollController.animateTo(
+                  0,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeOut,
+                );
+              },
+              getFilterIcon: _getFilterIcon,
             ),
           ),
         ),
@@ -688,15 +720,16 @@ class _HomePageState extends State<HomePage> {
             child: LayoutBuilder(
               builder: (context, constraints) {
                 final screenHeight = MediaQuery.of(context).size.height;
+                final screenWidth = MediaQuery.of(context).size.width;
                 final sliderHeight = screenHeight * 0.28;
                 return SizedBox(
                   height: sliderHeight,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                     itemCount: _filteredRestaurants.length > 10 ? 10 : _filteredRestaurants.length,
                     itemBuilder: (context, index) {
-                      return _buildRestaurantSliderCard(_filteredRestaurants[index]);
+                      return _buildRestaurantSliderCard(_filteredRestaurants[index], index);
                     },
                   ),
                 );
@@ -726,16 +759,17 @@ class _HomePageState extends State<HomePage> {
             child: LayoutBuilder(
               builder: (context, constraints) {
                 final screenHeight = MediaQuery.of(context).size.height;
+                final screenWidth = MediaQuery.of(context).size.width;
                 final sliderHeight = screenHeight * 0.28;
                 return SizedBox(
                   height: sliderHeight,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                     itemCount: _filteredRestaurants.where((r) => (r['rating'] as double) >= 4.5).length,
                     itemBuilder: (context, index) {
                       final topRated = _filteredRestaurants.where((r) => (r['rating'] as double) >= 4.5).toList();
-                      return _buildRestaurantSliderCard(topRated[index]);
+                      return _buildRestaurantSliderCard(topRated[index], index);
                     },
                   ),
                 );
@@ -817,7 +851,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
+      backgroundColor: const Color(0xFFF8F9FC),
       body: _getCurrentPage(),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -827,7 +861,7 @@ class _HomePageState extends State<HomePage> {
             _selectedIndex = index;
           });
         },
-        selectedItemColor: Colors.green.shade700,
+        selectedItemColor: const Color(0xFF0A3D91),
         unselectedItemColor: Colors.grey.shade600,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
@@ -864,7 +898,7 @@ class _HomePageState extends State<HomePage> {
             child: Text(
               'See All',
               style: TextStyle(
-                color: Colors.green.shade700,
+                color: const Color(0xFF0A3D91),
                 fontWeight: FontWeight.w600,
                 fontSize: MediaQuery.of(context).size.width * 0.035,
               ),
@@ -875,11 +909,16 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildRestaurantSliderCard(Map<String, dynamic> restaurant) {
+  Widget _buildRestaurantSliderCard(Map<String, dynamic> restaurant, int index) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    final cardWidth = screenWidth * 0.65;
+    final horizontalPadding = screenWidth * 0.04; // per side
+    final marginBetweenCards = screenWidth * 0.03; // per margin
     final sliderHeight = screenHeight * 0.28;
+    
+    // All cards same width: show 2.1 cards with responsive padding and margins (wider cards)
+    final cardWidth = (screenWidth - (2 * horizontalPadding) - (2 * marginBetweenCards)) / 2.1;
+    
     final imageHeight = sliderHeight * 0.6; // 60% of slider height for image
     
     return GestureDetector(
@@ -901,7 +940,7 @@ class _HomePageState extends State<HomePage> {
       child: Container(
         width: cardWidth,
         height: sliderHeight,
-        margin: const EdgeInsets.only(right: 12),
+        margin: EdgeInsets.only(right: screenWidth * 0.03),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12),
@@ -1004,19 +1043,19 @@ class _HomePageState extends State<HomePage> {
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                             decoration: BoxDecoration(
-                              color: Colors.green.shade50,
+                              color: const Color(0xFF0A3D91).withValues(alpha: 0.05),
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Icon(Icons.star, color: Colors.green.shade700, size: screenWidth * 0.03),
+                                Icon(Icons.star, color: const Color(0xFF0A3D91), size: screenWidth * 0.03),
                                 const SizedBox(width: 2),
                                 Flexible(
                                   child: Text(
                                     '${restaurant['rating']}',
                                     style: TextStyle(
-                                      color: Colors.green.shade700,
+                                      color: const Color(0xFF0A3D91),
                                       fontSize: screenWidth * 0.028,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -1206,18 +1245,18 @@ class _HomePageState extends State<HomePage> {
                             vertical: screenWidth * 0.008,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.green.shade50,
+                            color: const Color(0xFF0A3D91).withValues(alpha: 0.05),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(Icons.star, color: Colors.green.shade700, size: screenWidth * 0.035),
+                              Icon(Icons.star, color: const Color(0xFF0A3D91), size: screenWidth * 0.035),
                               SizedBox(width: screenWidth * 0.008),
                               Text(
                                 '${restaurant['rating']}',
                                 style: TextStyle(
-                                  color: Colors.green.shade700,
+                                  color: const Color(0xFF0A3D91),
                                   fontSize: screenWidth * 0.033,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -1274,14 +1313,15 @@ class _HomePageState extends State<HomePage> {
 // Sticky Header Delegate for Tabs
 class _StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
   final Widget child;
+  final double height;
 
-  _StickyHeaderDelegate({required this.child});
-
-  @override
-  double get minExtent => 50;
+  _StickyHeaderDelegate({required this.child, this.height = 120});
 
   @override
-  double get maxExtent => 50;
+  double get minExtent => height;
+
+  @override
+  double get maxExtent => height;
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
@@ -1290,6 +1330,6 @@ class _StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(_StickyHeaderDelegate oldDelegate) {
-    return child != oldDelegate.child;
+    return child != oldDelegate.child || height != oldDelegate.height;
   }
 }

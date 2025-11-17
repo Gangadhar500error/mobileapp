@@ -9,7 +9,7 @@ class AppSettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('App Settings'),
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: const Color(0xFF0A3D91),
         foregroundColor: Colors.white,
       ),
       body: ListView(

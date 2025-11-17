@@ -8,7 +8,7 @@ class SavedAddressesPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Saved Addresses'),
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: const Color(0xFF0A3D91),
         foregroundColor: Colors.white,
       ),
       body: ListView(
@@ -46,17 +46,17 @@ class SavedAddressesPage extends StatelessWidget {
               leading: Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: Colors.green.shade50,
+                  color: const Color(0xFF0A3D91).withValues(alpha: 0.05),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(Icons.add, color: Colors.green.shade700, size: 24),
+                child: Icon(Icons.add, color: const Color(0xFF0A3D91), size: 24),
               ),
               title: Text(
                 'Add New Address',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: Colors.green.shade700,
+                  color: const Color(0xFF0A3D91),
                 ),
               ),
               onTap: () {},
@@ -81,7 +81,7 @@ class SavedAddressesPage extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        leading: Icon(Icons.location_on, color: Colors.green.shade700, size: 28),
+        leading: Icon(Icons.location_on, color: const Color(0xFF0A3D91), size: 28),
         title: Row(
           children: [
             Text(
@@ -97,7 +97,7 @@ class SavedAddressesPage extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
-                  color: Colors.green.shade50,
+                  color: const Color(0xFF0A3D91).withValues(alpha: 0.05),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
@@ -105,7 +105,7 @@ class SavedAddressesPage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.w600,
-                    color: Colors.green.shade700,
+                    color: const Color(0xFF0A3D91),
                   ),
                 ),
               ),

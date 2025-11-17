@@ -29,11 +29,11 @@ class BottomCartView extends StatelessWidget {
           margin: const EdgeInsets.all(12),
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           decoration: BoxDecoration(
-            color: Colors.green.shade700,
+            color: const Color(0xFF0A3D91),
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                color: Colors.green.withValues(alpha: 0.4),
+                color: const Color(0xFF0A3D91).withValues(alpha: 0.4),
                 blurRadius: 12,
                 offset: const Offset(0, 4),
               ),
@@ -121,7 +121,7 @@ class BottomCartView extends StatelessWidget {
                 child: const Text(
                   'View Cart',
                   style: TextStyle(
-                    color: Colors.green,
+                    color: const Color(0xFF0A3D91),
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),

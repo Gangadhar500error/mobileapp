@@ -95,12 +95,15 @@ class _PhoneOtpVerifyPageState extends State<PhoneOtpVerifyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF8F9FC),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.green.shade700),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Color(0xFF0A3D91),
+          ),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -112,35 +115,47 @@ class _PhoneOtpVerifyPageState extends State<PhoneOtpVerifyPage> {
             children: [
               const SizedBox(height: 20),
               
-              // Simple Icon and Heading
+              // Icon and Heading
               Row(
                 children: [
-                  Icon(
-                    Icons.verified_user,
-                    size: 32,
-                    color: Colors.green.shade700,
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF0A3D91).withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Icon(
+                      Icons.verified_user,
+                      size: 28,
+                      color: Color(0xFF0A3D91),
+                    ),
                   ),
                   const SizedBox(width: 12),
-                  const Text(
-                    'Enter OTP',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
+                  const Expanded(
+                    child: Text(
+                      'Enter OTP',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF2B2B2B),
+                        letterSpacing: 0.3,
+                      ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 12),
               Text(
                 'We sent a 6-digit code to +91 ${widget.phoneNumber}',
                 style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey.shade600,
+                  fontSize: 16,
+                  color: const Color(0xFF2B2B2B).withValues(alpha: 0.6),
+                  fontWeight: FontWeight.w400,
                 ),
               ),
               
-              const SizedBox(height: 32),
+              const SizedBox(height: 40),
               
               // OTP Input Fields
               Row(
@@ -157,23 +172,33 @@ class _PhoneOtpVerifyPageState extends State<PhoneOtpVerifyPage> {
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
+                        color: Color(0xFF2B2B2B),
                       ),
                       decoration: InputDecoration(
                         counterText: '',
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.grey.shade300, width: 1),
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: Colors.grey.withValues(alpha: 0.3),
+                            width: 1,
+                          ),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.grey.shade300, width: 1),
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: Colors.grey.withValues(alpha: 0.3),
+                            width: 1,
+                          ),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.green.shade700, width: 1.5),
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: const BorderSide(
+                            color: Color(0xFF0A3D91),
+                            width: 2,
+                          ),
                         ),
                         filled: true,
-                        fillColor: Colors.grey.shade50,
+                        fillColor: Colors.white,
                         contentPadding: EdgeInsets.zero,
                       ),
                       onChanged: (value) => _onOtpChanged(index, value),
@@ -182,7 +207,7 @@ class _PhoneOtpVerifyPageState extends State<PhoneOtpVerifyPage> {
                 }),
               ),
               
-              const SizedBox(height: 30),
+              const SizedBox(height: 32),
               
               // Verify Button
               SizedBox(
@@ -191,11 +216,13 @@ class _PhoneOtpVerifyPageState extends State<PhoneOtpVerifyPage> {
                 child: ElevatedButton(
                   onPressed: _isLoading ? null : _verifyOtp,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green.shade700,
+                    backgroundColor: const Color(0xFF0A3D91),
                     foregroundColor: Colors.white,
-                    elevation: 0,
+                    disabledBackgroundColor: const Color(0xFF0A3D91).withValues(alpha: 0.5),
+                    elevation: 6,
+                    shadowColor: const Color(0xFF0A3D91).withValues(alpha: 0.3),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                   ),
                   child: _isLoading
@@ -212,11 +239,12 @@ class _PhoneOtpVerifyPageState extends State<PhoneOtpVerifyPage> {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
+                            letterSpacing: 0.5,
                           ),
                         ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 24),
               
               // Resend OTP
               Row(
@@ -224,35 +252,46 @@ class _PhoneOtpVerifyPageState extends State<PhoneOtpVerifyPage> {
                 children: [
                   Text(
                     "Didn't receive code? ",
-                    style: TextStyle(color: Colors.grey.shade600),
+                    style: TextStyle(
+                      color: const Color(0xFF2B2B2B).withValues(alpha: 0.6),
+                      fontSize: 14,
+                    ),
                   ),
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text(
+                    child: const Text(
                       'Change Number',
                       style: TextStyle(
-                        color: Colors.green.shade700,
+                        color: Color(0xFF0A3D91),
                         fontWeight: FontWeight.bold,
+                        fontSize: 14,
                       ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 24),
               
               // Dummy OTP Info
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.amber.shade50,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.amber.shade200),
+                  color: const Color(0xFFDAA520).withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: const Color(0xFFDAA520).withValues(alpha: 0.3),
+                    width: 1,
+                  ),
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.info_outline, color: Colors.amber.shade700, size: 20),
+                    const Icon(
+                      Icons.info_outline,
+                      color: Color(0xFFDAA520),
+                      size: 22,
+                    ),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Column(
@@ -262,7 +301,8 @@ class _PhoneOtpVerifyPageState extends State<PhoneOtpVerifyPage> {
                             'Dummy OTP for Testing',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Colors.amber.shade900,
+                              color: const Color(0xFFDAA520).withValues(alpha: 0.9),
+                              fontSize: 14,
                             ),
                           ),
                           const SizedBox(height: 4),
@@ -271,7 +311,7 @@ class _PhoneOtpVerifyPageState extends State<PhoneOtpVerifyPage> {
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: Colors.amber.shade900,
+                              color: const Color(0xFFDAA520).withValues(alpha: 0.9),
                             ),
                           ),
                         ],
@@ -287,4 +327,3 @@ class _PhoneOtpVerifyPageState extends State<PhoneOtpVerifyPage> {
     );
   }
 }
-

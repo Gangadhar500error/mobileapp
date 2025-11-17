@@ -27,7 +27,7 @@ class MapPlaceholder extends StatelessWidget {
                 end: Alignment.bottomRight,
                 colors: [
                   Colors.blue.shade100,
-                  Colors.green.shade100,
+                  const Color(0xFF0A3D91).withValues(alpha: 0.1),
                   Colors.blue.shade50,
                 ],
               ),

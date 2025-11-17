@@ -82,7 +82,7 @@ class _LoginPageState extends State<LoginPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF8F9FC),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -94,13 +94,12 @@ class _LoginPageState extends State<LoginPage>
                   height: 280,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        Colors.green.shade400,
-                        Colors.green.shade600,
-                        Colors.green.shade800,
+                        Color(0xFF0A3D91),
+                        Color(0xFF0A3D91),
                       ],
                     ),
                     borderRadius: const BorderRadius.only(
@@ -157,7 +156,7 @@ class _LoginPageState extends State<LoginPage>
                               child: const Icon(
                                 Icons.shopping_cart,
                                 size: 50,
-                                color: Colors.green,
+                                color: Color(0xFF0A3D91),
                               ),
                             ),
                             const SizedBox(height: 20),
@@ -206,16 +205,21 @@ class _LoginPageState extends State<LoginPage>
                             decoration: InputDecoration(
                               labelText: 'Email',
                               hintText: 'Enter your email',
-                              prefixIcon: Icon(Icons.email_outlined, color: Colors.green.shade700),
+                              prefixIcon: const Icon(Icons.email_outlined, color: Color(0xFF0A3D91)),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(16),
+                                borderSide: BorderSide(color: Colors.grey.withValues(alpha: 0.3)),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide: BorderSide(color: Colors.grey.withValues(alpha: 0.3)),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(16),
-                                borderSide: BorderSide(color: Colors.green.shade700, width: 2),
+                                borderSide: const BorderSide(color: Color(0xFF0A3D91), width: 2),
                               ),
                               filled: true,
-                              fillColor: Colors.grey.shade50,
+                              fillColor: Colors.white,
                               contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                             ),
                             validator: (value) {
@@ -238,7 +242,7 @@ class _LoginPageState extends State<LoginPage>
                             decoration: InputDecoration(
                               labelText: 'Password',
                               hintText: 'Enter your password',
-                              prefixIcon: Icon(Icons.lock_outline, color: Colors.green.shade700),
+                              prefixIcon: const Icon(Icons.lock_outline, color: Color(0xFF0A3D91)),
                               suffixIcon: IconButton(
                                 icon: Icon(
                                   _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined,
@@ -252,13 +256,18 @@ class _LoginPageState extends State<LoginPage>
                               ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(16),
+                                borderSide: BorderSide(color: Colors.grey.withValues(alpha: 0.3)),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide: BorderSide(color: Colors.grey.withValues(alpha: 0.3)),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(16),
-                                borderSide: BorderSide(color: Colors.green.shade700, width: 2),
+                                borderSide: const BorderSide(color: Color(0xFF0A3D91), width: 2),
                               ),
                               filled: true,
-                              fillColor: Colors.grey.shade50,
+                              fillColor: Colors.white,
                               contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                             ),
                             validator: (value) {
@@ -281,8 +290,8 @@ class _LoginPageState extends State<LoginPage>
                               onPressed: () {},
                               child: Text(
                                 'Forgot Password?',
-                                style: TextStyle(
-                                  color: Colors.green.shade700,
+                                style: const TextStyle(
+                                  color: Color(0xFF0A3D91),
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -297,9 +306,10 @@ class _LoginPageState extends State<LoginPage>
                             child: ElevatedButton(
                               onPressed: _isLoading ? null : _handleLogin,
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.green.shade700,
+                                backgroundColor: const Color(0xFF0A3D91),
                                 foregroundColor: Colors.white,
-                                elevation: 0,
+                                elevation: 6,
+                                shadowColor: const Color(0xFF0A3D91).withValues(alpha: 0.3),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(16),
                                 ),
@@ -349,8 +359,8 @@ class _LoginPageState extends State<LoginPage>
                                 },
                                 child: Text(
                                   'Register',
-                                  style: TextStyle(
-                                    color: Colors.green.shade700,
+                                  style: const TextStyle(
+                                    color: Color(0xFF0A3D91),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
                                   ),

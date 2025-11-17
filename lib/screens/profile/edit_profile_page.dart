@@ -8,7 +8,7 @@ class EditProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edit Profile'),
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: const Color(0xFF0A3D91),
         foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
@@ -24,7 +24,7 @@ class EditProfilePage extends StatelessWidget {
                     height: 120,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color: Colors.green.shade200, width: 3),
+                      border: Border.all(color: const Color(0xFF0A3D91).withValues(alpha: 0.2), width: 3),
                     ),
                     child: ClipOval(
                       child: Image.network(
@@ -50,7 +50,7 @@ class EditProfilePage extends StatelessWidget {
                       width: 36,
                       height: 36,
                       decoration: BoxDecoration(
-                        color: Colors.green.shade700,
+                        color: const Color(0xFF0A3D91),
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.white, width: 3),
                       ),
@@ -83,7 +83,7 @@ class EditProfilePage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green.shade700,
+                  backgroundColor: const Color(0xFF0A3D91),
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
@@ -122,7 +122,7 @@ class EditProfilePage extends StatelessWidget {
         initialValue: initialValue,
         decoration: InputDecoration(
           labelText: label,
-          prefixIcon: Icon(icon, color: Colors.green.shade700),
+          prefixIcon: Icon(icon, color: const Color(0xFF0A3D91)),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,

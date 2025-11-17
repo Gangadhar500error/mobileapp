@@ -8,7 +8,7 @@ class SupportHelpPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Support & Help'),
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: const Color(0xFF0A3D91),
         foregroundColor: Colors.white,
       ),
       body: ListView(
@@ -40,7 +40,7 @@ class SupportHelpPage extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        leading: Icon(icon, color: Colors.green.shade700, size: 24),
+        leading: Icon(icon, color: const Color(0xFF0A3D91), size: 24),
         title: Text(
           title,
           style: const TextStyle(

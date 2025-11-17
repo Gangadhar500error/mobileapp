@@ -8,7 +8,7 @@ class RefundTrackingPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Refund & Issue Tracking'),
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: const Color(0xFF0A3D91),
         foregroundColor: Colors.white,
       ),
       body: ListView(

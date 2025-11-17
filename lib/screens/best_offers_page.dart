@@ -63,10 +63,10 @@ class BestOffersPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
+      backgroundColor: const Color(0xFFF8F9FC),
       appBar: AppBar(
         title: const Text('Best Offers'),
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: const Color(0xFF0A3D91),
         foregroundColor: Colors.white,
       ),
       body: ListView.builder(
@@ -225,12 +225,12 @@ class BestOffersPage extends StatelessWidget {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('Offer ${offer['code']} applied!'),
-                          backgroundColor: Colors.green.shade700,
+                          backgroundColor: const Color(0xFF0A3D91),
                         ),
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green.shade700,
+                      backgroundColor: const Color(0xFF0A3D91),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),

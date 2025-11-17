@@ -8,7 +8,7 @@ class PaymentsWalletPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Payments & Manna Wallet'),
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: const Color(0xFF0A3D91),
         foregroundColor: Colors.white,
       ),
       body: ListView(
@@ -19,12 +19,12 @@ class PaymentsWalletPage extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.green.shade400, Colors.green.shade600],
+                colors: [const Color(0xFF0A3D91), const Color(0xFF0A3D91)],
               ),
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.green.withValues(alpha: 0.3),
+                  color: const Color(0xFF0A3D91).withValues(alpha: 0.3),
                   blurRadius: 12,
                   offset: const Offset(0, 4),
                 ),

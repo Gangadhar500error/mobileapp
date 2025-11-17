@@ -69,7 +69,7 @@ class _PhoneInputPageState extends State<PhoneInputPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF8F9FC),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -78,56 +78,79 @@ class _PhoneInputPageState extends State<PhoneInputPage> {
             children: [
               const SizedBox(height: 20),
               
-              // Simple Icon and Heading
+              // Icon and Heading
               Row(
                 children: [
-                  Icon(
-                    Icons.phone_android,
-                    size: 32,
-                    color: Colors.green.shade700,
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF0A3D91).withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Icon(
+                      Icons.phone_android,
+                      size: 28,
+                      color: Color(0xFF0A3D91),
+                    ),
                   ),
                   const SizedBox(width: 12),
-                  const Text(
-                    'Enter Phone Number',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
+                  const Expanded(
+                    child: Text(
+                      'Enter Phone Number',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF2B2B2B),
+                        letterSpacing: 0.3,
+                      ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 12),
               Text(
                 'We will send you a verification code',
                 style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey.shade600,
+                  fontSize: 16,
+                  color: const Color(0xFF2B2B2B).withValues(alpha: 0.6),
+                  fontWeight: FontWeight.w400,
                 ),
               ),
               
-              const SizedBox(height: 32),
+              const SizedBox(height: 40),
               
               // Phone Number Field with Country Code
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade50,
-                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: _isFocused ? Colors.green.shade700 : Colors.grey.shade300,
-                    width: _isFocused ? 1.5 : 1,
+                    color: _isFocused 
+                        ? const Color(0xFF0A3D91) 
+                        : Colors.grey.withValues(alpha: 0.3),
+                    width: _isFocused ? 2 : 1,
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: _isFocused
+                          ? const Color(0xFF0A3D91).withValues(alpha: 0.1)
+                          : Colors.black.withValues(alpha: 0.05),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
                 ),
                 child: Row(
                   children: [
                     Container(
-                      width: 60,
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Text(
+                      width: 70,
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: const Text(
                         '+91',
                         style: TextStyle(
-                          color: Colors.green.shade700,
-                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF0A3D91),
+                          fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
                       ),
@@ -135,7 +158,7 @@ class _PhoneInputPageState extends State<PhoneInputPage> {
                     Container(
                       width: 1,
                       height: 40,
-                      color: Colors.grey.shade300,
+                      color: Colors.grey.withValues(alpha: 0.3),
                     ),
                     Expanded(
                       child: TextField(
@@ -145,20 +168,27 @@ class _PhoneInputPageState extends State<PhoneInputPage> {
                         maxLength: 10,
                         decoration: InputDecoration(
                           hintText: 'Enter 10-digit number',
+                          hintStyle: TextStyle(
+                            color: Colors.grey.withValues(alpha: 0.5),
+                          ),
                           border: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           focusedBorder: InputBorder.none,
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
                           counterText: '',
                         ),
-                        style: const TextStyle(fontSize: 16),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF2B2B2B),
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
               
-              const SizedBox(height: 30),
+              const SizedBox(height: 32),
               
               // Send OTP Button
               SizedBox(
@@ -167,11 +197,13 @@ class _PhoneInputPageState extends State<PhoneInputPage> {
                 child: ElevatedButton(
                   onPressed: _isLoading ? null : _sendOtp,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green.shade700,
+                    backgroundColor: const Color(0xFF0A3D91),
                     foregroundColor: Colors.white,
-                    elevation: 0,
+                    disabledBackgroundColor: const Color(0xFF0A3D91).withValues(alpha: 0.5),
+                    elevation: 6,
+                    shadowColor: const Color(0xFF0A3D91).withValues(alpha: 0.3),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                   ),
                   child: _isLoading
@@ -188,29 +220,39 @@ class _PhoneInputPageState extends State<PhoneInputPage> {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
+                            letterSpacing: 0.5,
                           ),
                         ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 24),
               
-              // Info
+              // Info Box
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.blue.shade50,
-                  borderRadius: BorderRadius.circular(12),
+                  color: const Color(0xFF0A3D91).withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: const Color(0xFF0A3D91).withValues(alpha: 0.2),
+                    width: 1,
+                  ),
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.info_outline, color: Colors.blue.shade700, size: 20),
+                    Icon(
+                      Icons.info_outline,
+                      color: const Color(0xFF0A3D91),
+                      size: 22,
+                    ),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
                         'Dummy OTP: 123456 (for testing)',
                         style: TextStyle(
                           fontSize: 14,
-                          color: Colors.blue.shade900,
+                          color: const Color(0xFF0A3D91),
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
@@ -224,4 +266,3 @@ class _PhoneInputPageState extends State<PhoneInputPage> {
     );
   }
 }
-

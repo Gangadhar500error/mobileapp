@@ -282,7 +282,7 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> {
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.green.shade700,
+                                    color: const Color(0xFF0A3D91),
                                   ),
                                 ),
                                 // Quantity Controls
@@ -292,7 +292,7 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> {
                                       IconButton(
                                         icon: const Icon(Icons.remove_circle_outline),
                                         onPressed: () => _updateQuantity(itemId, -1),
-                                        color: Colors.green.shade700,
+                                        color: const Color(0xFF0A3D91),
                                         padding: EdgeInsets.zero,
                                         constraints: const BoxConstraints(),
                                       ),
@@ -309,22 +309,29 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> {
                                       IconButton(
                                         icon: const Icon(Icons.add_circle_outline),
                                         onPressed: () => _updateQuantity(itemId, 1),
-                                        color: Colors.green.shade700,
+                                        color: const Color(0xFF0A3D91),
                                         padding: EdgeInsets.zero,
                                         constraints: const BoxConstraints(),
                                       ),
                                     ],
                                   )
                                 else
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.green.shade700,
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: IconButton(
-                                      icon: const Icon(Icons.add, color: Colors.white, size: 20),
-                                      onPressed: () => _addToCart(itemId, item),
-                                      padding: const EdgeInsets.all(8),
+                                  Material(
+                                    color: const Color(0xFF0A3D91),
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: InkWell(
+                                      onTap: () => _addToCart(itemId, item),
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: Container(
+                                        width: 28,
+                                        height: 28,
+                                        alignment: Alignment.center,
+                                        child: const Icon(
+                                          Icons.add,
+                                          color: Colors.white,
+                                          size: 18,
+                                        ),
+                                      ),
                                     ),
                                   ),
                               ],

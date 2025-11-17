@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'header.dart';
 
 class BannerSlider extends StatefulWidget {
-  const BannerSlider({super.key});
+  final ActiveTab category;
+  
+  const BannerSlider({
+    super.key,
+    this.category = ActiveTab.food,
+  });
 
   @override
   State<BannerSlider> createState() => _BannerSliderState();
@@ -13,12 +19,29 @@ class _BannerSliderState extends State<BannerSlider> {
   int _currentPage = 0;
   Timer? _timer;
 
-  // 3 local image paths
-  final List<String> _bannerImages = [
-    'assets/images/slider1.png',
-    'assets/images/slider2.png',
-    'assets/images/slider3.png',
-  ];
+  // Get banner images based on category
+  List<String> get _bannerImages {
+    switch (widget.category) {
+      case ActiveTab.food:
+        return [
+          'assets/images/slider1.png',
+          'assets/images/slider2.png',
+          'assets/images/slider3.png',
+        ];
+      case ActiveTab.grocery:
+        return [
+          'assets/images/grocery1.png',
+          'assets/images/grocery2.png',
+          'assets/images/grocery3.png',
+        ];
+      case ActiveTab.milk:
+        return [
+          'assets/images/milk1.png',
+          'assets/images/milk2.png',
+          'assets/images/milk3.png',
+        ];
+    }
+  }
 
   @override
   void initState() {
@@ -88,72 +111,62 @@ class _BannerSliderState extends State<BannerSlider> {
   }
 
   Widget _buildBannerImage(String imagePath) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        // Background Image
-        Image.asset(
-          imagePath,
-          width: double.infinity,
-          fit: BoxFit.cover,
-          errorBuilder: (context, error, stackTrace) {
-            return Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Colors.blue.shade400,
-                    Colors.blue.shade600,
-                    Colors.blue.shade800,
-                  ],
-                ),
+    return ClipRRect(
+      child: Image.asset(
+        imagePath,
+        width: double.infinity,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          // Category-specific placeholder colors
+          List<Color> gradientColors;
+          IconData icon;
+          
+          switch (widget.category) {
+            case ActiveTab.food:
+              gradientColors = [
+                Colors.orange.shade400,
+                Colors.orange.shade600,
+                Colors.orange.shade800,
+              ];
+              icon = Icons.restaurant;
+              break;
+            case ActiveTab.grocery:
+              gradientColors = [
+                Colors.green.shade400,
+                Colors.green.shade600,
+                Colors.green.shade800,
+              ];
+              icon = Icons.shopping_cart;
+              break;
+            case ActiveTab.milk:
+              gradientColors = [
+                Colors.blue.shade400,
+                Colors.blue.shade600,
+                Colors.blue.shade800,
+              ];
+              icon = Icons.local_drink;
+              break;
+          }
+          
+          return Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: gradientColors,
               ),
-              child: Center(
-                child: Icon(
-                  Icons.image_not_supported,
-                  size: 50,
-                  color: Colors.white,
-                ),
+            ),
+            child: Center(
+              child: Icon(
+                icon,
+                size: 50,
+                color: Colors.white,
               ),
-            );
-          },
-        ),
-        // Colorful Gradient Overlay (Zomato style - vibrant and attractive)
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Colors.blue.shade700.withValues(alpha: 0.3),
-                Colors.purple.shade600.withValues(alpha: 0.2),
-                Colors.pink.shade600.withValues(alpha: 0.25),
-              ],
-              stops: const [0.0, 0.5, 1.0],
             ),
-          ),
-        ),
-        // Additional overlay for depth
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.transparent,
-                Colors.black.withValues(alpha: 0.15),
-              ],
-            ),
-          ),
-        ),
-        // Decorative diagonal lines pattern (subtle)
-        CustomPaint(
-          painter: DiagonalLinesPainter(),
-          child: Container(),
-        ),
-      ],
+          );
+        },
+      ),
     );
   }
 
@@ -179,28 +192,4 @@ class _BannerSliderState extends State<BannerSlider> {
       ),
     );
   }
-}
-
-// Custom painter for diagonal lines pattern
-class DiagonalLinesPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.white.withValues(alpha: 0.08)
-      ..strokeWidth = 1.5
-      ..style = PaintingStyle.stroke;
-
-    // Draw diagonal lines
-    const spacing = 20.0;
-    for (double i = -size.height; i < size.width + size.height; i += spacing) {
-      canvas.drawLine(
-        Offset(i, 0),
-        Offset(i + size.height, size.height),
-        paint,
-      );
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

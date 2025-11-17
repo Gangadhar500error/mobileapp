@@ -16,7 +16,7 @@ class AllRestaurantsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(category == 'All' ? 'All Restaurants' : category),
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: const Color(0xFF0A3D91),
         foregroundColor: Colors.white,
       ),
       body: restaurants.isEmpty
@@ -156,18 +156,18 @@ class AllRestaurantsPage extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                         decoration: BoxDecoration(
-                          color: Colors.green.shade50,
+                          color: const Color(0xFF0A3D91).withValues(alpha: 0.05),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.star, color: Colors.green.shade700, size: 14),
+                            Icon(Icons.star, color: const Color(0xFF0A3D91), size: 14),
                             const SizedBox(width: 4),
                             Text(
                               '${restaurant['rating']}',
                               style: TextStyle(
-                                color: Colors.green.shade700,
+                                color: const Color(0xFF0A3D91),
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
                               ),

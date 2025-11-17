@@ -65,7 +65,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 _handleLocationAllowed();
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green.shade700,
+                backgroundColor: const Color(0xFF0A3D91),
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
@@ -96,7 +96,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
             Text('Address fetched successfully'),
           ],
         ),
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: const Color(0xFF0A3D91),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
@@ -153,7 +153,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
+      backgroundColor: const Color(0xFFF8F9FC),
       appBar: AppBar(
         title: const Text(
           'Add Address',
@@ -225,12 +225,12 @@ class _AddAddressPageState extends State<AddAddressPage> {
                                 padding: const EdgeInsets.symmetric(vertical: 12),
                                 decoration: BoxDecoration(
                                   color: isSelected
-                                      ? Colors.green.shade50
+                                      ? const Color(0xFF0A3D91).withValues(alpha: 0.05)
                                       : Colors.white,
                                   borderRadius: BorderRadius.circular(12),
                                   border: Border.all(
                                     color: isSelected
-                                        ? Colors.green.shade700
+                                        ? const Color(0xFF0A3D91)
                                         : Colors.grey.shade300,
                                     width: isSelected ? 2 : 1,
                                   ),
@@ -244,7 +244,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                                           ? FontWeight.w600
                                           : FontWeight.normal,
                                       color: isSelected
-                                          ? Colors.green.shade700
+                                          ? const Color(0xFF0A3D91)
                                           : Colors.grey.shade700,
                                     ),
                                   ),
@@ -303,7 +303,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                       child: ElevatedButton(
                         onPressed: _saveAddress,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green.shade700,
+                          backgroundColor: const Color(0xFF0A3D91),
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -381,7 +381,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: Colors.green.shade700, width: 2),
+              borderSide: const BorderSide(color: Color(0xFF0A3D91), width: 2),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),

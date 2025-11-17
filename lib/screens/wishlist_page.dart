@@ -60,7 +60,7 @@ class WishlistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
+      backgroundColor: const Color(0xFFF8F9FC),
       appBar: AppBar(
         title: Row(
           children: [
@@ -236,7 +236,7 @@ class WishlistPage extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                         decoration: BoxDecoration(
-                          color: Colors.green.shade50,
+                          color: const Color(0xFF0A3D91).withValues(alpha: 0.05),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Row(
@@ -245,7 +245,7 @@ class WishlistPage extends StatelessWidget {
                             Icon(
                               Icons.star,
                               size: 12,
-                              color: Colors.green.shade700,
+                              color: const Color(0xFF0A3D91),
                             ),
                             const SizedBox(width: 2),
                             Text(
@@ -253,7 +253,7 @@ class WishlistPage extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.green.shade700,
+                                color: const Color(0xFF0A3D91),
                               ),
                             ),
                           ],

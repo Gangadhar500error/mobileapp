@@ -17,10 +17,10 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
+      backgroundColor: const Color(0xFFF8F9FC),
       appBar: AppBar(
         title: const Text('My Profile'),
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: const Color(0xFF0A3D91),
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -151,7 +151,7 @@ class ProfilePage extends StatelessWidget {
               'Support & Help',
               Icons.help_outline,
               'Help Center, Chat, Call Support',
-              Colors.green,
+              const Color(0xFF0A3D91),
               () {
                 Navigator.push(
                   context,
@@ -223,7 +223,7 @@ class ProfilePage extends StatelessWidget {
                 height: 70,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: Colors.green.shade200, width: 2),
+                  border: Border.all(color: const Color(0xFF0A3D91).withValues(alpha: 0.2), width: 2),
                 ),
                 child: ClipOval(
                   child: Image.network(
@@ -258,7 +258,7 @@ class ProfilePage extends StatelessWidget {
                   width: 24,
                   height: 24,
                   decoration: BoxDecoration(
-                    color: Colors.green.shade700,
+                    color: const Color(0xFF0A3D91),
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.white, width: 2),
                   ),

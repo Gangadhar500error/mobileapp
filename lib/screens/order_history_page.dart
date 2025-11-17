@@ -111,7 +111,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
   Color _getStatusColor(String status) {
     switch (status) {
       case 'delivered':
-        return Colors.green;
+        return const Color(0xFF0A3D91);
       case 'out_for_delivery':
         return Colors.blue;
       case 'accepted':
@@ -147,7 +147,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Order History'),
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: const Color(0xFF0A3D91),
         foregroundColor: Colors.white,
       ),
       body: _orders.isEmpty
@@ -265,7 +265,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: Colors.green.shade700,
+                              color: const Color(0xFF0A3D91),
                             ),
                           ),
                         ],

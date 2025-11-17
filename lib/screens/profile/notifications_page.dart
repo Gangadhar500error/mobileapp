@@ -16,7 +16,7 @@ class NotificationsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Notifications'),
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: const Color(0xFF0A3D91),
         foregroundColor: Colors.white,
       ),
       body: ListView.builder(
@@ -41,12 +41,12 @@ class NotificationsPage extends StatelessWidget {
               leading: CircleAvatar(
                 backgroundColor: (notification['read'] as bool)
                     ? Colors.grey.shade200
-                    : Colors.green.shade100,
+                    : const Color(0xFF0A3D91).withValues(alpha: 0.1),
                 child: Icon(
                   Icons.notifications,
                   color: (notification['read'] as bool)
                       ? Colors.grey.shade600
-                      : Colors.green.shade700,
+                      : const Color(0xFF0A3D91),
                 ),
               ),
               title: Text(
@@ -71,7 +71,7 @@ class NotificationsPage extends StatelessWidget {
                       width: 8,
                       height: 8,
                       decoration: const BoxDecoration(
-                        color: Colors.green,
+                        color: Color(0xFF0A3D91),
                         shape: BoxShape.circle,
                       ),
                     ),

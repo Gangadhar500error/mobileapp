@@ -9,9 +9,9 @@ class AppFooter extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: Colors.green.shade50,
+        color: const Color(0xFF0A3D91).withValues(alpha: 0.05),
         border: Border(
-          top: BorderSide(color: Colors.green.shade200, width: 1),
+          top: BorderSide(color: const Color(0xFF0A3D91).withValues(alpha: 0.1), width: 1),
         ),
       ),
       child: Column(
@@ -23,12 +23,12 @@ class AppFooter extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.green.shade700,
+                  color: const Color(0xFF0A3D91),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: const Icon(
                   Icons.restaurant,
-                  color: Colors.white,
+                  color: Color(0xFFDAA520),
                   size: 24,
                 ),
               ),
@@ -38,7 +38,7 @@ class AppFooter extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black87,
+                  color: Color(0xFF2B2B2B),
                   letterSpacing: 2,
                 ),
               ),
@@ -49,7 +49,7 @@ class AppFooter extends StatelessWidget {
             'Your trusted food & grocery delivery partner',
             style: TextStyle(
               fontSize: 14,
-              color: Colors.grey.shade700,
+              color: const Color(0xFF2B2B2B).withValues(alpha: 0.7),
             ),
             textAlign: TextAlign.center,
           ),
@@ -66,14 +66,14 @@ class AppFooter extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           // Divider
-          Divider(color: Colors.green.shade200),
+          Divider(color: const Color(0xFF0A3D91).withValues(alpha: 0.2)),
           const SizedBox(height: 16),
           // Copyright
           Text(
             '© 2025 Manna. All rights reserved.',
             style: TextStyle(
               fontSize: 12,
-              color: Colors.grey.shade600,
+              color: const Color(0xFF2B2B2B).withValues(alpha: 0.6),
             ),
           ),
           const SizedBox(height: 8),
@@ -103,20 +103,20 @@ class AppFooter extends StatelessWidget {
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withValues(alpha: 0.1),
+                color: const Color(0xFF0A3D91).withValues(alpha: 0.1),
                 blurRadius: 4,
                 offset: const Offset(0, 2),
               ),
             ],
           ),
-          child: Icon(icon, color: Colors.green.shade700, size: 20),
+          child: Icon(icon, color: const Color(0xFF0A3D91), size: 20),
         ),
         const SizedBox(height: 8),
         Text(
           label,
           style: TextStyle(
             fontSize: 11,
-            color: Colors.grey.shade700,
+            color: const Color(0xFF2B2B2B).withValues(alpha: 0.7),
             fontWeight: FontWeight.w500,
           ),
           textAlign: TextAlign.center,
@@ -135,15 +135,14 @@ class AppFooter extends StatelessWidget {
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withValues(alpha: 0.1),
+              color: const Color(0xFF0A3D91).withValues(alpha: 0.1),
               blurRadius: 4,
               offset: const Offset(0, 2),
             ),
           ],
         ),
-        child: Icon(icon, color: Colors.green.shade700, size: 18),
+        child: Icon(icon, color: const Color(0xFF0A3D91), size: 18),
       ),
     );
   }
 }
-
